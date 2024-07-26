@@ -24,3 +24,8 @@ export const toggleAll = async () => {
   await db.todo.updateMany({ data: { completed: !completed } });
   revalidatePath("/");
 };
+
+export const destroyTodo = async (id: Todo["id"]) => {
+  await db.todo.delete({ where: { id } });
+  revalidatePath("/");
+};

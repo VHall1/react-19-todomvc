@@ -1,7 +1,7 @@
 import { Header } from "./(components)/header";
 import { TodoItem } from "./(components)/todo-item";
 import { ToggleAll } from "./(components)/toggle-all";
-import { getTodos, toggleAll, toggleTodo } from "./actions";
+import { destroyTodo, getTodos, toggleAll, toggleTodo } from "./actions";
 
 export default async function Home() {
   const todos = await getTodos();
@@ -19,7 +19,12 @@ export default async function Home() {
         <ToggleAll toggleAllAction={toggleAll} />
         <ul className="todo-list">
           {todos.map((todo) => (
-            <TodoItem todo={todo} toggleTodoAction={toggleTodo} key={todo.id} />
+            <TodoItem
+              todo={todo}
+              toggleTodoAction={toggleTodo}
+              destroyTodoAction={destroyTodo}
+              key={todo.id}
+            />
           ))}
         </ul>
       </main>

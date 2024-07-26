@@ -1,12 +1,14 @@
 "use client";
 
 import clsx from "clsx";
-import type { getTodos, toggleTodo } from "../actions";
+import type { destroyTodo, getTodos, toggleTodo } from "../actions";
 
-export function TodoItem({ todo, toggleTodoAction }: TodoItemProps) {
-  const handleOnChange = () => {
-    toggleTodoAction(todo.id);
-  };
+export function TodoItem({
+  todo,
+  toggleTodoAction,
+  destroyTodoAction,
+}: TodoItemProps) {
+  // TODO: use new action hook here to handle errors?
 
   return (
     <li className={clsx({ completed: todo.completed })}>
@@ -15,10 +17,13 @@ export function TodoItem({ todo, toggleTodoAction }: TodoItemProps) {
           className="toggle"
           type="checkbox"
           checked={todo.completed}
-          onChange={handleOnChange}
+          onChange={() => toggleTodoAction(todo.id)}
         />
         <label>{todo.content}</label>
-        <button className="destroy"></button>
+        <button
+          className="destroy"
+          onClick={() => destroyTodoAction(todo.id)}
+        />
       </div>
     </li>
   );
@@ -27,4 +32,5 @@ export function TodoItem({ todo, toggleTodoAction }: TodoItemProps) {
 interface TodoItemProps {
   todo: Awaited<ReturnType<typeof getTodos>>[number];
   toggleTodoAction: typeof toggleTodo;
+  destroyTodoAction: typeof destroyTodo;
 }
