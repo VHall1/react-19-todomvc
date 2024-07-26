@@ -1,7 +1,14 @@
+import { Footer } from "./(components)/footer";
 import { Header } from "./(components)/header";
 import { TodoItem } from "./(components)/todo-item";
 import { ToggleAll } from "./(components)/toggle-all";
-import { destroyTodo, getTodos, toggleAll, toggleTodo } from "./actions";
+import {
+  destroyCompleted,
+  destroyTodo,
+  getTodos,
+  toggleAll,
+  toggleTodo,
+} from "./actions";
 
 export default async function Home() {
   const todos = await getTodos();
@@ -28,23 +35,7 @@ export default async function Home() {
           ))}
         </ul>
       </main>
-      <footer className="footer">
-        <span className="todo-count">{todosLeft} item left!</span>
-        <ul className="filters">
-          <li>
-            <a className="selected">All</a>
-          </li>
-          <li>
-            <a>Active</a>
-          </li>
-          <li>
-            <a>Completed</a>
-          </li>
-        </ul>
-        <button className="clear-completed" disabled>
-          Clear completed
-        </button>
-      </footer>
+      <Footer todosLeft={todosLeft} destroyCompletedAction={destroyCompleted} />
     </section>
   );
 }

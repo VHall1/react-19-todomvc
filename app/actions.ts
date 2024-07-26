@@ -29,3 +29,8 @@ export const destroyTodo = async (id: Todo["id"]) => {
   await db.todo.delete({ where: { id } });
   revalidatePath("/");
 };
+
+export const destroyCompleted = async () => {
+  await db.todo.deleteMany({ where: { completed: true } });
+  revalidatePath("/");
+};
