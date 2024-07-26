@@ -1,3 +1,4 @@
+import { FilterProvider } from "./_components/context";
 import { Footer } from "./_components/footer";
 import { Header } from "./_components/header";
 import { TodoItem } from "./_components/todo-item";
@@ -20,7 +21,7 @@ export default async function Todos() {
   }, 0);
 
   return (
-    <>
+    <FilterProvider>
       <section className="todoapp">
         <Header />
         <main className="main">
@@ -51,6 +52,6 @@ export default async function Todos() {
           Inspired by <a href="http://todomvc.com">TodoMVC</a>
         </p>
       </footer>
-    </>
+    </FilterProvider>
   );
 }

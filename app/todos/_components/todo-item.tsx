@@ -1,20 +1,15 @@
 "use client";
 
 import clsx from "clsx";
-import { usePathname } from "next/navigation";
 import type { destroyTodo, getTodos, toggleTodo } from "../actions";
+import { useFilter } from "./context";
 
 export function TodoItem({
   todo,
   toggleTodoAction,
   destroyTodoAction,
 }: TodoItemProps) {
-  const pathname = usePathname();
-  const filter = pathname.endsWith("/completed")
-    ? "completed"
-    : pathname.endsWith("/active")
-    ? "active"
-    : "all";
+  const filter = useFilter();
 
   const shouldRender =
     filter === "all" ||

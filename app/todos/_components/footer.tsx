@@ -2,16 +2,11 @@
 
 import clsx from "clsx";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import type { destroyCompleted } from "../actions";
+import { useFilter } from "./context";
 
 export function Footer({ todosLeft, destroyCompletedAction }: FooterProps) {
-  const pathname = usePathname();
-  const filter = pathname.endsWith("/completed")
-    ? "completed"
-    : pathname.endsWith("/active")
-    ? "active"
-    : "all";
+  const filter = useFilter();
 
   return (
     <footer className="footer">
