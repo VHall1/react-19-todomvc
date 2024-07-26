@@ -13,6 +13,7 @@
     "react-dom": "$react-dom"
   },
   "dependencies": {
+    "@prisma/client": "^5.17.0",
     "next": "15.0.0-rc.0",
     "react": "19.0.0-rc-14a4699f-20240725",
     "react-dom": "19.0.0-rc-14a4699f-20240725",
